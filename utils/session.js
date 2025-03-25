@@ -1,10 +1,10 @@
 const session = require('express-session');
-const RedisStore = require('connect-redis').default; // 👈 nécessaire avec v8+
+const {RedisStore} = require("connect-redis")
 const { client: redisClient } = require('../redis/index');
 
 const store = new RedisStore({
   client: redisClient,
-  prefix: 'sess:', // tu peux personnaliser
+  prefix: 'sess:', // Tu peux personnaliser ce préfixe
 });
 
 const sessionMiddleware = session({

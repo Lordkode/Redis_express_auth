@@ -1,25 +1,16 @@
 const redis = require("redis");
-const { promisify } = require("util");
 
-// Utiliser l'URL de la variable d'environnement au lieu de localhost
-const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
-console.log("Tentative de connexion à Redis sur :", redisUrl);
-
-// Créer un client Redis
-const client = redis.createClient({
-  url: redisUrl,
+const redisClient = redis.createClient({
+  host: "redis", // Your Redis container name from Docker Compose
+  port: 6379, // Default Redis port
 });
 
-client.on("error", (err) => {
-  console.log("❌ Redis error:", err);
+redisClient.on("connect", () => {
+  console.log("Connected to Redis");
 });
 
-client.on("connect", () => {
-  console.log("✅ Connected to Redis");
+redisClient.on("error", (err) => {
+  console.error("Redis error:", err);
 });
 
-// Promisify quelques méthodes Redis pour utiliser async/await
-const getAsync = promisify(client.get).bind(client);
-const setAsync = promisify(client.set).bind(client);
-
-module.exports = { client, getAsync, setAsync };
+module.exports = { client: redisClient };
