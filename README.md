@@ -1,7 +1,3 @@
-Voici un exemple de **README.md** professionnel et concis, adapté à un projet d'API d'authentification avec **Express.js** et **Redis**.
-
----
-
 # Auth API with Express.js & Redis
 
 ## Description
@@ -166,13 +162,3 @@ If you'd like to contribute to this project, please fork the repository and subm
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-## Conclusion
-
-This authentication API, combined with Redis for session management, ensures quick, scalable, and secure user authentication. Redis improves the performance of the application by storing session data in memory, providing efficient access, and managing session expiration seamlessly.
-
----
-
-Cela couvre toutes les bases de l'API, l'utilisation de Redis, et offre un aperçu professionnel tout en étant clair et concis pour les développeurs qui interagiront avec ce projet.
