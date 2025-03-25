@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
 // Enregistrement d'un nouvel utilisateur
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, age } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -52,7 +52,7 @@ router.post("/register", async (req, res) => {
         .json({ message: "Un compte existe déjà avec cet email." });
     }
 
-    const newUser = new User({ email, password, name });
+    const newUser = new User({ email, password, name, age });
     const savedUser = await newUser.save();
 
     const code = await generateVerificationCode();

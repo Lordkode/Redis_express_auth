@@ -1,16 +1,18 @@
-const redis = require("redis");
+// redis/index.js
+const Redis = require('ioredis');
 
-const redisClient = redis.createClient({
-  host: "redis", // Your Redis container name from Docker Compose
-  port: 6379, // Default Redis port
+// Créer un client Redis avec ioredis
+const redis = new Redis({
+  host: 'redis',  // Ou l'URL de votre instance Redis
+  port: 6379,         // Port de votre instance Redis
 });
 
-redisClient.on("connect", () => {
-  console.log("Connected to Redis");
+redis.on('connect', () => {
+  console.log('Connecté à Redis');
 });
 
-redisClient.on("error", (err) => {
-  console.error("Redis error:", err);
+redis.on('error', (err) => {
+  console.error('Erreur Redis :', err);
 });
 
-module.exports = { client: redisClient };
+module.exports = redis;
