@@ -15,7 +15,7 @@ This project is an **Authentication API** built with **Express.js**. It leverage
 
 - **Backend:** Node.js with Express.js
 - **Database:** Redis (for session storage)
-- **Authentication:** JWT (JSON Web Tokens)
+- **Authentication:** Session auth
 
 ## Getting Started
 
@@ -33,7 +33,7 @@ Ensure the following are installed on your machine:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/auth-api-express-redis.git
+   git clone https://github.com/LordKode/auth-api-express-redis.git
    cd auth-api-express-redis
    ```
 
@@ -55,7 +55,7 @@ Ensure the following are installed on your machine:
    JWT_SECRET=your_jwt_secret_key
    REDIS_HOST=localhost
    REDIS_PORT=6379
-   REDIS_PASSWORD=your_redis_password (if applicable)
+   REDIS_PASSWORD=your_redis_password 
    ```
 
 5. **Start the application**:
@@ -123,7 +123,7 @@ const RedisStore = require('connect-redis')(session);
 
 app.use(session({
   store: new RedisStore({ client: redisClient }),
-  secret: process.env.JWT_SECRET,
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false, httpOnly: true, maxAge: 3600000 } // 1 hour
@@ -146,18 +146,6 @@ redisClient.on('connect', () => {
   console.log('Connected to Redis');
 });
 ```
-
-## Contributing
-
-If you'd like to contribute to this project, please fork the repository and submit a pull request with your changes. Make sure to follow the coding conventions and write tests for new features.
-
-### Steps for Contributing
-
-1. Fork the repository.
-2. Create a new branch for your feature (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature-name`).
-5. Create a pull request with a detailed description of your changes.
 
 ## License
 
